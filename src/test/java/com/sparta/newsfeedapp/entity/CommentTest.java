@@ -5,6 +5,7 @@ import com.sparta.newsfeedapp.dto.post.PostRequestDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,7 +33,8 @@ public class CommentTest {
         return user;
     }
     private Post setPost(){
-        postRequestDto.setContent("test contents.");
+        this.postRequestDto = new PostRequestDto();
+        this.postRequestDto.setContent("test contents.");
         post = new Post(
                 postRequestDto,
                 setUser()
@@ -41,9 +43,10 @@ public class CommentTest {
     }
 
     private Comment setComment(){
-        commentCreateRequestDto.setContent("test contents.");
+        this.commentCreateRequestDto = new CommentCreateRequestDto();
+        this.commentCreateRequestDto.setContent("test contents.");
         comment = new Comment(
-                commentCreateRequestDto,
+                this.commentCreateRequestDto,
                 setUser(),
                 setPost()
         );
